@@ -34,6 +34,10 @@ return {
         vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
         vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts)
         vim.keymap.set("n", "<leader>d", vim.diagnostic.open_float, opts)
+        vim.api.nvim_create_autocmd("BufWritePre", {
+          buffer = bufnr,
+          command = "lua vim.lsp.buf.format()"
+        })
       end
 
       -- New API: vim.lsp.config instead of lspconfig
